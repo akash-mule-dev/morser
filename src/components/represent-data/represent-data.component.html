@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="header-container">
+    <label class="header-label" for=""> Dynamically Generated Form</label>
+  </div>
+
+  <div class="form">
+    <div
+      *ngFor="let field of dynamicControlData; let i = index"
+      class="form-group"
+    >
+      <label for="firstName">{{ field.label }}</label>
+      <ng-container [ngSwitch]="field.dataType">
+        <input *ngSwitchCase="'singleLineText'" type="text" />
+        <input *ngSwitchCase="'number'" type="number" />
+        <select *ngSwitchCase="'singleChoice'">
+          <option *ngFor="let option of field.value" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+        <div class="skill-container" *ngSwitchCase="'MultiChoice'">
+          <div
+            style="display: table-cell"
+            *ngFor="let option of field.value; let j = index"
+          >
+            <label for="">{{ option }} </label>
+            <input type="checkbox" />
+          </div>
+        </div>
+        <textarea class="text-class" *ngSwitchCase="'multiLineText'"></textarea>
+      </ng-container>
+    </div>
+    <br />
+    <button type="submit">Submit</button>
+  </div>
+</div>

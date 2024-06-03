@@ -1,0 +1,5 @@
+for installing the packages run 
+npm install
+
+for serving the application run
+ng serve
